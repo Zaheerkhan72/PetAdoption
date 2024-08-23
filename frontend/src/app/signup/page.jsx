@@ -1,6 +1,8 @@
 'use client';
 import { useFormik } from 'formik';
 import React from 'react'
+import axios from 'axios';
+import toast from "react-hot-toast";
 
 const Signup = () => {
 
@@ -12,9 +14,20 @@ const Signup = () => {
       password : '',
       confirmPassword: ''
     },
+    
     onSubmit: (values) => {
-      console.log(values);
-    }
+      axios
+        .post("http://localhost:5000/pet/add", values)
+        .then((result) => {
+          console.log(result.status);
+          toast.success("Pet Added Successfully!");
+          // resetForm();
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Pet Add Failed!");
+        });
+    },
 
   });
 

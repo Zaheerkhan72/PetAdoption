@@ -2,12 +2,13 @@
 import axios from "axios";
 import { useFormik } from "formik";
 import React from "react";
+import toast from "react-hot-toast";
 
 const AddPet = () => {
   // initialization
-  const signupForm = useFormik({
+  const petForm = useFormik({
     initialValues: {
-      type: "",
+      type: "dog",
       breed: "",
       image: "",
       color: "",
@@ -15,11 +16,11 @@ const AddPet = () => {
     },
     onSubmit: (values) => {
       axios
-        .post("http://localhost:5000/user/add", values)
+        .post("http://localhost:5000/pet/add", values)
         .then((result) => {
           console.log(result.status);
           toast.success("Pet Added Successfully!");
-          resetForm();
+          // resetForm();
         })
         .catch((err) => {
           console.log(err);
@@ -39,23 +40,28 @@ const AddPet = () => {
           </div>
           <div className="mt-5">
             {/* Form */}
-            <form onSubmit={signupForm.handleSubmit}>
+            <form onSubmit={petForm.handleSubmit}>
               <div className="grid gap-y-4">
                 {/* Form Group */}
                 <div>
                   <label htmlFor="name" className="block text-sm mb-2">
-                    Name
+                    Pet Type
                   </label>
                   <div className="relative">
-                    <input
+                    <select
                       type="text"
-                      id="name"
-                      onChange={signupForm.handleChange}
-                      value={signupForm.values.name}
+                      id="type"
+                      onChange={petForm.handleChange}
+                      value={petForm.values.type}
                       className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required=""
                       aria-describedby="name-error"
-                    />
+                    >
+                      <option value="dog">Dog</option>
+                      <option value="cat">Cat</option>
+                      <option value="snake">Snake</option>
+                      <option value="rabbit">Rabbit</option>
+                    </select>
                     <div className="hidden absolute inset-y-0 end-0 pointer-events-none pe-3">
                       <svg
                         className="size-5 text-red-500"
@@ -70,7 +76,7 @@ const AddPet = () => {
                     </div>
                   </div>
                   <p
-                    className="hidden text-xs text-red-600 mt-2"
+                    className=" border hidden text-xs text-red-600 mt-2"
                     id="email-error"
                   >
                     Please include a valid email address so we can get back to
@@ -79,15 +85,15 @@ const AddPet = () => {
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-sm mb-2">
-                    Email address
+                    Pet Breed
                   </label>
                   <div className="relative">
                     <input
-                      type="email"
-                      id="email"
-                      onChange={signupForm.handleChange}
-                      value={signupForm.values.email}
-                      className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                      type="text"
+                      id="breed"
+                      onChange={petForm.handleChange}
+                      value={petForm.values.breed}
+                      className="border py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required=""
                       aria-describedby="email-error"
                     />
@@ -116,14 +122,14 @@ const AddPet = () => {
                 {/* Form Group */}
                 <div>
                   <label htmlFor="password" className="block text-sm mb-2">
-                    Password
+                    Color
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
-                      id="password"
-                      onChange={signupForm.handleChange}
-                      value={signupForm.values.password}
+                      type="text"
+                      id="color"
+                      onChange={petForm.handleChange}
+                      value={petForm.values.color}
                       className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required=""
                       aria-describedby="password-error"
@@ -155,13 +161,13 @@ const AddPet = () => {
                     htmlFor="confirm-password"
                     className="block text-sm mb-2"
                   >
-                    Confirm Password
+                    Age
                   </label>
                   <div className="relative">
                     <input
-                      type="password"
-                      id="confirm-password"
-                      name="confirmPassword"
+                      type="number"
+                      id="age"
+                      onChange={petForm.handleChange}
                       className="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                       required=""
                       aria-describedby="confirm-password-error"
