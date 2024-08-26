@@ -1,10 +1,11 @@
 "use client";
 import axios from "axios";
 import { useFormik } from "formik";
-import React from "react";
+import React, { useState } from "react";
 import toast from "react-hot-toast";
 
 const AddPet = () => {
+  const [selFile, setSelFile] = useState("");
   // initialization
   const petForm = useFormik({
     initialValues: {
@@ -15,6 +16,7 @@ const AddPet = () => {
       age: 0,
     },
     onSubmit: (values) => {
+      values.image = selFile;
       axios
         .post("http://localhost:5000/pet/add", values)
         .then((result) => {
@@ -28,6 +30,20 @@ const AddPet = () => {
         });
     },
   });
+
+  const uploadFile = async (e) => {
+    let file = e.target.files[0];
+    setSelFile(file.name);
+    const fd = new FormData();
+    fd.append("myfile", file);
+  
+    try {
+      const res = await axios.post("http://localhost:5000/util/uploadfile", fd);
+      console.log(res.status);
+    } catch (err) {
+      console.error("File upload failed", err);
+    }
+  };
 
   return (
     <div className="max-w-[500px] mx-auto">
@@ -109,6 +125,16 @@ const AddPet = () => {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z" />
                       </svg>
                     </div>
+                  </div>
+
+                  <div className="  z-0 w-full mb-5">
+                    <input
+                      type="file"
+                      name="image"
+                      placeholder=" "
+                      onChange={uploadFile}
+                      className="pt-3 pb-2 pr-12 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+                    />
                   </div>
                   <p
                     className="hidden text-xs text-red-600 mt-2"
