@@ -1,5 +1,5 @@
 const express = require('express');
-
+const utilRouter = require('./routers/utils');
 const UserRouter = require('./routers/userRouter')
 const petRouter = require('./routers/petRouter')
 const cors = require('cors');
@@ -18,6 +18,9 @@ app.use(express.json());
 
 app.use('/user', UserRouter);
 app.use('/pet', petRouter);
+app.use('/util', utilRouter)
+
+app.use(express.static('./uploads'));
 
 // route or endpoint
 app.get('/', (req, res) => {

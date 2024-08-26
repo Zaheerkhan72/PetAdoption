@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import Link from "next/link";
 
 const petList = () => {
   const [pet, setPet] = useState({});
@@ -40,17 +41,25 @@ const petList = () => {
                     alt="Sunset in the mountains"
                   /> */}
                   <div className="px-6 py-4">
-                    <div className="font-bold text-xl mb-2">
-                      {obj.breed}
+                    <div>
+                      <img
+                        className=" object-cover"
+                        src={"http://localhost:5000/" + obj.image}
+                        alt="pet-image"
+                      />
                     </div>
-                    <p className="text-gray-700 text-base">
-                      {obj.color}
-                    </p>
-                    <p className="text-gray-700 text-base">
-                      {obj.age}
-                    </p>
+                    <div className="font-bold text-xl mb-2">{obj.breed}</div>
+                    <p className="text-gray-700 text-base">{obj.color}</p>
+                    <p className="text-gray-700 text-base">{obj.age}</p>
+                 
+          <Link
+            href={"/petdetails/" + obj._id}
+            className="block bg-indigo-500 text-white rounded px-2 py-1 w-36 text-center   relative group-hover:text-orange-700 transition-colors duration-200 "
+          >
+          Read More
+          </Link>
+     
                   </div>
-                  
                 </div>
               );
             })

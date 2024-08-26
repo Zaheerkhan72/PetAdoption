@@ -50,7 +50,7 @@ const Login = () => {
   });
 
   return (
-    <div className='max-w-md mx-auto'>
+    <div className="max-w-md mx-auto bg-[url(' bg-[url('https://i.pinimg.com/564x/71/24/4b/71244be4633f4e4656cf6febe91bd4e5.jpg')] ')] ">
       <div className="mt-7 bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
         <div className="p-4 sm:p-7">
           <div className="text-center">
