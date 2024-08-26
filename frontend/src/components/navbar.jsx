@@ -13,10 +13,10 @@ const Navbar = () => {
       <div className="flex items-center justify-between">
         <Link
           className="flex-none text-xl font-semibold text-white"
-          href="#"
+          href="/"
           aria-label="Brand"
         >
-          Brand
+          Pet Adoption
         </Link>
         <div className="sm:hidden">
           <button
@@ -65,19 +65,13 @@ const Navbar = () => {
         className="hs-collapse hidden overflow-hidden transition-all duration-300 basis-full grow sm:block"
       >
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-end py-2 md:py-0 sm:ps-7">
+         
           <Link
-            className="py-3 ps-px sm:px-3 font-medium text-white"
-            href="#"
-            aria-current="page"
-          >
-            Signup
-          </Link>
-          <a
             className="py-3 ps-px sm:px-3 font-medium text-white/80 hover:text-white"
-            href="#"
+            href="/"
           >
-            Account
-          </a>
+            Home
+          </Link>
           <a
             className="py-3 ps-px sm:px-3 font-medium text-white/80 hover:text-white"
             href="#"
