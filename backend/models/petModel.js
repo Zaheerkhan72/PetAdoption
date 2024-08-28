@@ -6,6 +6,7 @@ const mySchema = new Schema({
     image: String,
     color: String,
     age: Number,
+    ownerId: { type: Schema.Types.ObjectId, ref: 'User' },
     createdAt: { type: Date, default: Date.now }
 });
 

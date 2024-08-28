@@ -16,7 +16,8 @@
     "preline": "^2.4.1",
     "react": "^18",
     "react-dom": "^18",
-    "react-hot-toast": "^2.4.1"
+    "react-hot-toast": "^2.4.1",
+    "yup": "^1.4.0"
   },
   "devDependencies": {
     "eslint": "^8",
